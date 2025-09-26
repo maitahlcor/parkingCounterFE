@@ -33,3 +33,21 @@ a { color:#93c5fd; text-decoration:none; }
 form .field { margin-top: 12px; }
 label { display: block; margin-bottom: 6px; color: var(--text); opacity: .9; }
 .input { width: 100%; }
+/* controla altura y alineación de TODOS los controles */
+.input, .btn, select {
+  height: 44px;              /* mismo alto para todo */
+  padding: 0 14px;           /* padding horizontal consistente */
+  border-radius: 8px;
+}
+
+/* el botón centra el texto verticalmente */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;            /* evita crecer por line-height */
+  min-width: 110px;          /* opcional: ancho mínimo agradable */
+}
+
+/* variante para ocupar todo el ancho cuando quieras */
+.btn.block { width: 100%; }
