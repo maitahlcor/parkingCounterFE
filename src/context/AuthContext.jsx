@@ -3,7 +3,7 @@ import { apiMe, apiLogin } from "../lib/api.js";
 import { saveSession, clearSession, getUser, getTeam } from "../lib/auth.js";
 
 const AuthCtx = createContext(null);
-export const useAuth = () => useContext(AuthCtx);
+export const useAuth = () => useContext(AuthCtx);   // ✅ export nombrado
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(getUser());
@@ -41,7 +41,7 @@ export function AuthProvider({ children }) {
     setTeam(null);
   }
 
-  useEffect(() => { if (!user) return; reloadMe(); /* valida token al montar */ }, []);
+  useEffect(() => { if (user) reloadMe(); }, []);  // valida token al montar
 
   return (
     <AuthCtx.Provider value={{ user, team, isAuthenticated, login, logout, loading }}>

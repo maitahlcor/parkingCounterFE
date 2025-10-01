@@ -62,3 +62,13 @@ export async function apiListEvents({ plate, from, to } = {}) {
   if (!res.ok) throw new Error("List events failed");
   return res.json();
 }
+
+export async function apiSyncBatch(events) {
+  const res = await fetch(`${BASE_URL}/sync/batch`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", ...authHeader() },
+    body: JSON.stringify({ events })
+  });
+  if (!res.ok) throw new Error("Sync failed");
+  return res.json(); // { savedKeys:[], duplicateKeys:[] }
+}
